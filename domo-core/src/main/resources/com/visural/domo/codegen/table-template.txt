@@ -1,0 +1,98 @@
+/*
+ * Copyright 2011 Richard Nichols.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package $config.javaPackage$;
+
+import com.google.common.collect.Maps;
+import com.visural.domo.TableOrView;
+import com.visural.domo.impl.FieldMapping;
+import com.visural.domo.impl.TableField;
+import com.visural.domo.condition.CombineTerms;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+$if(config.addJsr303Annotations)$import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;$endif$
+
+/**
+ * Generated code
+ */
+public $if(config.concreteInstance)$$else$abstract $endif$class $data.className$ $if(config.optionalBaseClass)$extends $config.optionalBaseClass$ $endif$implements TableOrView$if(config.addSerializable)$, java.io.Serializable$endif$ {
+$if(data.updateable)$    
+    public static $data.updateClassName$ updateRows() {
+        return new $data.updateClassName$($data.className$.class);
+    }$endif$
+
+    public static $data.conditionClassName$ andTerms() {
+        return new $data.conditionClassName$(CombineTerms.and);
+    }
+
+    public static $data.conditionClassName$ orTerms() {
+        return new $data.conditionClassName$(CombineTerms.or);
+    }
+
+    private final static String __sqlCatalog = "$data.sqlCatalog$";
+    private final static String __sqlSchema = "$data.sqlSchema$";
+    private final static String __sqlTable = "$data.sqlTable$";
+    private final static Map<String,FieldMapping> __tableFields;
+    
+    static {
+        __tableFields = Maps.newHashMap();
+        Field[] fields = $data.className$.class.getDeclaredFields();
+        for (Field field : fields) {
+            TableField tf = field.getAnnotation(TableField.class);
+            if (tf != null) {
+                field.setAccessible(true);
+                Field orig = null;
+                try {
+                    orig = $data.className$.class.getDeclaredField("_orig_"+field.getName());
+                    orig.setAccessible(true);
+                } catch (Exception e) {
+                    // doesn't exist
+                }
+                __tableFields.put(field.getName(), new FieldMapping(field, orig, tf));
+            }            
+        }
+    }
+
+
+    protected static final List<String> __pk = Arrays.asList($data.pkFields:{"$it$"};separator=","$);
+    $if(config.pkGeneratorName)$protected static final String __pk_generator = "$config.pkGeneratorName$";$endif$
+
+$data.vars:{    
+    private $it.type$ _orig_$it.javaName$;}$
+$data.vars:{    
+    protected @TableField(position=$it.position$,sqlName="$it.sqlName$"$if(it.notNullable)$,notNull=true$endif$$if(it.autoIncrement)$,autoIncrement=true$endif$$if(it.modifyTimestamp)$,modifyTimestamp=true$endif$) $if(config.addJsr303Annotations)$$if(it.notNullable)$@NotNull $endif$$if(it.stringLength)$@Size(max=$it.stringLength$) $endif$$endif$$it.type$ $it.javaName$; $if(it.autoIncrement)$ // auto-increment$endif$   }$
+$if(config.concreteInstance)$$data.vars:{
+    public $it.type$ get$it.javaName;format="firstCharUpper"$() {
+        return this.$it.javaName$;
+    }
+
+    public $data.className$ set$it.javaName;format="firstCharUpper"$($it.type$ $it.javaName$) {
+        this.$it.javaName$ = $it.javaName$;
+        return this;
+    }
+}$$endif$    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[").append(getClass().getName()).append(":\n");
+$data.vars:{    
+        sb.append("  $it.javaName$: ").append($it.javaName$).append('\n');}$
+        return sb.append("]\n").toString();
+    }
+}

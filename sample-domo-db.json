@@ -1,0 +1,6 @@
+{
+    "driverClassName": "org.postgresql.Driver",
+    "connectString": "jdbc:postgresql://localhost/omd",
+    "username": "omd",
+    "password": "omd"
+}

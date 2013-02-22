@@ -1,0 +1,25 @@
+{
+    "includeTables": [
+        {
+            "catalog": ".*",
+            "schema": ".*",
+            "tableName": ".*"
+        }
+    ],
+    "excludeTables": [],
+    "template": {
+        "namingConverterClass": "com.visural.domo.codegen.DefaultColumnNamingConverter",
+        "concreteInstance": false,
+        "addJsr303Annotations": false,
+        "addSerializable": false,
+        "includeBlobs": false
+    },
+    "tables": [
+        {
+            "schema": "public",
+            "tableOrViewName": "activitylog",
+            "javaPackage": "com.visural.domo.generated._._public",
+            "className": "ActivityLog"
+        }
+    ]
+}

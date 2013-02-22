@@ -1,0 +1,14 @@
+usage:
+    java -jar ${jarname} <operation> [<args>]
+
+get help:
+    java -jar ${jarname} help <operation>
+
+valid operations:
+    help            give help about a operation
+
+    refresh         execute the code generation process to build stubs
+
+    extract-config  write a domo-config.json for the default configuration
+                    against a given database
+

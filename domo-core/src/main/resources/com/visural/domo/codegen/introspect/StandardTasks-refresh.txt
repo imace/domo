@@ -1,0 +1,12 @@
+usage:
+    java -jar ${jarname} refresh <domo-db.json> <domo-config.json> <source dir>
+
+paramters:
+    domo-db.json        The path and filename to the database connection config
+                        file in JSON format.
+
+    domo-config.json    The path and filename to the code generation config file
+                        in JSON format.
+
+    source dir          The base folder to generate source files into.
+

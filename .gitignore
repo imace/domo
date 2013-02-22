@@ -1,0 +1,10 @@
+/domo-core/target/
+/domo-test/target/
+/domo-maven-plugin/target/
+/domo-ant/target/
+/domo-maven/target/
+/domo-guice/target/
+/domo-spring/target/
+/target/
+*.iml
+/.idea/

@@ -1,0 +1,6 @@
+{
+    "driverClassName":"org.hsqldb.jdbcDriver",
+    "connectString":"jdbc:hsqldb:file:target/hsql.db;shutdown=true",
+    "username":"sa",
+    "password":"sa"
+}

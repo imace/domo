@@ -1,0 +1,10 @@
+usage:
+    java -jar ${jarname} extract-config <domo-db.json> <domo-config.json>
+
+paramters:
+    domo-db.json        The path and filename to the database connection config
+                        file in JSON format.
+
+    domo-config.json    The path and filename to the code generation config file
+                        in JSON format.
+
