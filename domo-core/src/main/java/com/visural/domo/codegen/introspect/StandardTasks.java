@@ -16,6 +16,8 @@
 package com.visural.domo.codegen.introspect;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
+import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import static com.visural.common.Function.nvl;
@@ -41,6 +43,9 @@ import java.util.List;
 public class StandardTasks {
 
     public static void generateSource(String dbConnectFile, String dbConfigFile, String generatedSourceBase) {
+        checkNotNull(dbConfigFile);
+        checkNotNull(generatedSourceBase);
+        
         File dbConfig = new File(dbConnectFile);
         File dest = new File(generatedSourceBase);
         if (dbConfig.exists()) {
@@ -48,7 +53,11 @@ public class StandardTasks {
                 if (!dest.exists()) {
                     dest.mkdirs();
                 }
-                ConnectionSource source = new ConnectOnDemandConnectionSource(new Gson().fromJson(new String(IOUtil.read(dbConfig)), DatabaseConnectInfo.class));
+                DatabaseConnectInfo connectInfo = new Gson().fromJson(new String(IOUtil.read(dbConfig)), DatabaseConnectInfo.class);
+                if (!connectInfo.isValid()) {
+                    throw new IllegalArgumentException("Database connection details not provided.");
+                }
+                ConnectionSource source = new ConnectOnDemandConnectionSource(connectInfo);
                 Connection con = null;
                 try {
                     con = source.getNew();

@@ -132,9 +132,9 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <sources>
-                        <source>${basedir}/target/generated-sources/domo</source>
-                    </sources>
+                    <databaseConfigPath>domo-db.json</databaseConfigPath>
+                    <generateSourcesPath>target/generated-sources/domo</generateSourcesPath>
+                    <configFile>domo-config.json</configFile>
                 </configuration>                
                 <dependencies>
                     <dependency>

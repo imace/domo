@@ -50,7 +50,7 @@ public class GenerateSourceTask extends Task {
     }
 
     @Override
-    public void execute() throws BuildException {
+    public void execute() throws BuildException {        
         try {
             StandardTasks.generateSource(dbConnectFile, dbConfigFile, generatedSourceBase);
         } catch (Throwable t) {

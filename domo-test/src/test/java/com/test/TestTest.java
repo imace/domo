@@ -15,16 +15,17 @@
  */
 package com.test;
 
-import com.test.exceptions.NonexistentEntityException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import junit.framework.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  *
  * @author nicholr
  */
+@Ignore
 public class TestTest extends Assert {
 
     @Test

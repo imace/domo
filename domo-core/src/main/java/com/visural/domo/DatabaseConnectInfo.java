@@ -15,6 +15,7 @@
  */
 package com.visural.domo;
 
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.visural.common.IOUtil;
 import java.io.File;
@@ -43,6 +44,10 @@ public class DatabaseConnectInfo<T extends DatabaseConnectInfo> implements Seria
      */
     public static DatabaseConnectInfo fromJson(File jsonFile) throws IOException {
         return fromJson(new FileInputStream(jsonFile));
+    }
+    
+    public boolean isValid() {
+        return !Strings.isNullOrEmpty(driverClassName) && !Strings.isNullOrEmpty(connectString);        
     }
     
     /**

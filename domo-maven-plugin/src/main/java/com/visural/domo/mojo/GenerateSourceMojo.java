@@ -29,18 +29,18 @@ public class GenerateSourceMojo extends AbstractMojo {
 
     /**
      * The JSON config file containing database information to use for domo introspection
-     * @parameter expression="${domo.db}" default-value="domo-db.json"
+     * @parameter expression="${domo.databaseConfigPath}" default-value="domo-db.json"
      */
-    private String domoDatabase;
+    private String databaseConfigPath;
     /**
      * The target dir for source generation. 
-     * @parameter expression="${domo.dest}" default-value="target/generated-sources/domo"
+     * @parameter expression="${domo.generateSourcesPath}" default-value="target/generated-sources/domo"
      */
-    private String domoDest;
+    private String generateSourcesPath;
     /**
      * The configuration file with code gen settings. Optional, if missing 
      * all tables will be generated with defaults.
-     * @parameter expression="${domo.config}" default-value="domo-config.json"
+     * @parameter expression="${domo.generateSourcesPath}" default-value="domo-config.json"
      */
     private String configFile;
     /**
@@ -51,8 +51,8 @@ public class GenerateSourceMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException {
         try {
-            File dest = new File(domoDest);
-            StandardTasks.generateSource(domoDatabase, configFile, domoDest);
+            File dest = new File(generateSourcesPath);
+            StandardTasks.generateSource(databaseConfigPath, configFile, generateSourcesPath);
             this.project.addCompileSourceRoot(dest.getCanonicalPath());
         } catch (Throwable t) {
             throw new MojoExecutionException(t.getMessage(), t);
